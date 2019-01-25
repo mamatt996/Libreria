@@ -14,10 +14,15 @@ public class GenereService implements IGenereService {
 
 	@Override
 	public void createGenere(Genere genere) {
-		/*genere=genereDAO.getAllGeneri();
-		for(Genere g : genere)
-			if(g != genereDAO.getAllGeneri())*/	
-		genereDAO.createGenere(genere);
+		boolean genereEsistente =false;
+		for (Genere g : genereDAO.getAllGeneri()) {
+			if (g.getNome().equals(genere.getNome())) {
+				genereEsistente = true;
+			}
+		}
+		if (!genereEsistente) {
+			genereDAO.createGenere(genere);
+		}
 	}
 
 	@Override
